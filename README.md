@@ -2,7 +2,7 @@
 
 Learn piano with gamified sheet-music playing on the web.
 
-Piano Party is a PERN stack-based webapp that gamifies learning sheet music by allowing users to play music on their keyboard with feedback on their performance.
+Piano Party is a Next.js based webapp that gamifies learning sheet music by allowing users to play music on their keyboard with feedback on their performance.
 
 ## Features
 

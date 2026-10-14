@@ -11,8 +11,42 @@ Piano Party is a Next.js based webapp that gamifies learning sheet music by allo
 - Track Progress: Progress is saved and tracked between sessions so users can observe changes and improvements in their playing.
 
 ## Getting Started
+### Dependencies
+First, install dependencies.
+```bash
+npm install
+```
+### Database container
+The database can be set up using the provided docker compose command.
 
-### Set up the database on your machine.
+First, open docker desktop.
+
+The docker container uses .env.local for the host username, port, password, and database.
+
+Use the provided credentials or update the docker compose command and .env.local with your own.
+
+```bash
+mv .env.local.EXAMPLE .env.local
+```
+
+```bash
+docker compose up -d
+```
+### Run the web server
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+The website will be viewable at [http://localhost:3000/](http://localhost:3000/).
+### Manual Installation
+
+#### Setting up the database on your machine.
 Install PostgreSQL
 ```bash
 sudo apt update
@@ -21,7 +55,7 @@ sudo service postgresql start
 ```
 The last line must be re-run each time you restart your session.
 
-Create the database
+#### Create the database
 ```bash
 sudo -u postgres psql
 ```
@@ -44,26 +78,6 @@ Format: `postgres://USER:PASSWORD@HOST:PORT/DATABASE`
 npm run db:reset
 ```
 This will wipe the current database and rebuild from `server/db/schema.sql`, then load test data from `server/db/seed.sql`
-
-### Install dependencies
-```bash
-npm install
-```
-
-### Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ## Test accounts
 | Credentials | Significance |

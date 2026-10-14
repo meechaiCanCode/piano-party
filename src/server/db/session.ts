@@ -8,7 +8,7 @@ export type Session = Readonly<{
   timeCreated : Date,
   timeExpires : Date
 }>
-const SESSION_QUERY = "SELECT token, user_id AS 'userId', time_created AS 'timeCreated', timeExpires AS 'time_expires' FROM Sessions";
+const SESSION_QUERY = `SELECT token, user_id AS "userId", time_created AS "timeCreated", time_expires AS "timeExpires" FROM Sessions`;
 
 /**
  * Gets the session associated with the given token.

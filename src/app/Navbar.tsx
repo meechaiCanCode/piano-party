@@ -1,10 +1,9 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
-import { getCurrentSession } from "@/server/db/session";
-import { User, getUserBySession, getUserByUserId } from "@/server/db/user";
+import { getCurrentUser } from "@/server/db/session";
 
 export async function Navbar(){
-  const user = await getUserBySession(await getCurrentSession());
+  const user = await getCurrentUser();
 
   return (
       <div className={styles.navbar}>

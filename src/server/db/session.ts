@@ -8,7 +8,8 @@ export type Session = Readonly<{
   timeCreated : Date,
   timeExpires : Date
 }>
-const SESSION_QUERY = `SELECT token, user_id AS "userId", time_created AS "timeCreated", time_expires AS "timeExpires" FROM Sessions`;
+const SESSION_FIELDS = `token, user_id AS "userId", time_created AS "timeCreated", time_expires AS "timeExpires"`;
+const SESSION_QUERY = `SELECT ${SESSION_FIELDS} FROM Sessions`;
 
 /**
  * Gets the session associated with the given token.
@@ -25,25 +26,35 @@ export async function getSessionByToken(
   return result.rows[0] ?? null;
 }
 
+/**
+ * 
+ * @returns A Session object, or null if there is no active session
+ */
 export async function getCurrentSession() : Promise<Session | null> {
   const token = (await cookies()).get("session")?.value;
   return await getSessionByToken(token ?? null) ?? null
 }
 
+/**
+ * 
+ * @returns A User object, or null if there is no active session
+ */
 export async function getCurrentUser() : Promise< User | null> {
   const user = await getUserBySession(await getCurrentSession());
   return user ?? null
 }
 
 /**
- * Creates a session for a given userId.
+ * Creates a session for the given userId.
  * @param userId User to create a session for
- * @returns Token of newly created session
+ * @returns A Session object for the newly created session
  */
-export async function createSession(userId: string): Promise<string> {
-  const result = await pool.query("INSERT INTO Sessions (user_id) VALUES ($1) RETURNING token", [userId]);
+export async function createSession(userId: string): Promise<Session> {
+  const sessionResult = await pool.query(`INSERT INTO Sessions (user_id) VALUES ($1) RETURNING ${SESSION_FIELDS}`, [userId]);
 
-  return result.rows[0].token;
+  if (!sessionResult.rows[0])
+    throw Error(`Failed to create session for userId ${userId}`);
+  return sessionResult.rows[0];
 }
 
 /**

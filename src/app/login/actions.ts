@@ -17,7 +17,7 @@ export async function login(_prev: State, formData: FormData): Promise<State> {
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) return { error: "Invalid username or password" };
 
-  const token = await createSession(user.id);
+  const token = (await createSession(user.id)).token;
 
   (await cookies()).set("session", token, {
     httpOnly: true,

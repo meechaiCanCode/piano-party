@@ -1,6 +1,7 @@
 import { pool } from "@/server/db";
 import bcrypt from "bcryptjs";
 import { DatabaseError } from "pg";
+import { Session } from "@/server/db/session"
 
 export type User = Readonly<{
     id : string,
@@ -16,7 +17,7 @@ export async function getUserByUsername(
 ): Promise< User | null> {
   if (!username) 
     return null;
-  
+
   const result = await pool.query<User>(`${USER_QUERY} WHERE username = $1`, [username]);
   return result.rows[0] ?? null;
 }
@@ -28,6 +29,16 @@ export async function getUserByUserId(
     return null;
 
   const result = await pool.query<User>(`${USER_QUERY} WHERE id = $1`, [userId]);
+  return result.rows[0] ?? null;
+}
+
+export async function getUserBySession(
+  session: Session | null
+): Promise< User | null> {
+  if (!session) 
+    return null;
+
+  const result = await pool.query<User>(`${USER_QUERY} WHERE id = $1`, [session.userId]);
   return result.rows[0] ?? null;
 }
 

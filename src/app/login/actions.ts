@@ -2,7 +2,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
-import { findUserWithHashByUsername, createSession } from "@/server/auth";
+import { findUserWithHashByUsername } from "@/server/auth";
+import {createSession } from "@/server/db/session";
 
 type State = { error: string };
 

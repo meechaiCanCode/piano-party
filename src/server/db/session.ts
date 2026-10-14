@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { pool } from "@/server/db";
+import { User, getUserBySession } from "./user";
 
 export type Session = Readonly<{
   token : string,
@@ -27,6 +28,11 @@ export async function getSessionByToken(
 export async function getCurrentSession() : Promise<Session | null> {
   const token = (await cookies()).get("session")?.value;
   return await getSessionByToken(token ?? null) ?? null
+}
+
+export async function getCurrentUser() : Promise< User | null> {
+  const user = await getUserBySession(await getCurrentSession());
+  return user ?? null
 }
 
 /**

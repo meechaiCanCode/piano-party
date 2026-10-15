@@ -12,9 +12,15 @@ export async function Navbar(){
           {user_id ? (
             <span className={styles.account}>{getUsername(user_id)}</span>    
           ) : (
-            <Link href="/login" className={styles.account}>
-              Login
-            </Link>
+            <div className={styles.authButtons}>
+              <Link href="/signup" className={styles.account}>
+                Signup
+              </Link>
+              
+              <Link href="/login" className={styles.account}>
+                Login
+              </Link>
+            </div>
           )}
         </div>
     );

@@ -1,1 +1,0 @@
-// takes relative directory path as commandline arg, and iterates, recursively if needed, through all lilypond files, sending them to parser.

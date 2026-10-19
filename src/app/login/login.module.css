@@ -1,0 +1,121 @@
+.card {
+    background-color: #f2f2f2;
+    border: 1px solid #2f2f2f;
+    border-radius: 12px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field input {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    color: #1b1b1b;
+    font-size: 0.95rem;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: #9292ff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2)
+}
+
+.form button{
+    padding: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #9292ff;
+    color: #111;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.form button:hover {
+    background-color: #7272ff;
+}
+
+.form button:disabled {
+    background-color: #444;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.form button:focus-visible {
+  outline: 2px solid #9292ff;
+  outline-offset: 2px;
+}
+
+.passwordRow{
+    display: flex;
+    gap: 5px;
+}
+
+.passwordRow button {
+  width: 80px;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px solid #444;
+  color: #ccc;
+}
+
+.passwordRow button:hover {
+  border-color: #9292ff;
+  color: #9292ff;
+  background-color: transparent;
+}
+
+.label{
+    color: #2f2f2f;
+    font-size: 16px;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #3a3a3a;
+  width: 100%;
+  text-align: center;
+  color: #1b1b1b;
+}
+
+.error {
+  color: #ff8a80;
+  font-size: 0.85rem;
+  background-color: rgba(179, 38, 30, 0.15);
+  border: 1px solid rgba(179, 38, 30, 0.4);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+

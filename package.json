@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "npx next dev",
+    "build": "npx next build",
+    "start": "npx next start",
+    "lint": "eslint",
+    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "next": "16.3.5",
     "pg": "^8.23.1",
     "react": "19.2.8",

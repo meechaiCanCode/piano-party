@@ -1,3 +1,12 @@
+import styles from "./index.module.css"
+
 export default function Home() {
-  return <h1>Piano Party</h1>;
+  return (
+      <main>
+      <div className={styles.content}>
+        <h1>Welcome to piano party!</h1>
+        <p>Learning sight-reading by playing music on your keyboard!</p>
+      </div>
+      </main>
+  );
 }

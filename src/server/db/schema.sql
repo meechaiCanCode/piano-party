@@ -19,6 +19,7 @@ CREATE TABLE Songs (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     composer TEXT,
+    style TEXT,
 
     file_path TEXT NOT NULL UNIQUE,
 

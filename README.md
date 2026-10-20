@@ -28,7 +28,6 @@ Use the provided credentials or update the docker compose command and .env.local
 ```bash
 mv .env.local.EXAMPLE .env.local
 ```
-
 ```bash
 docker compose up -d
 ```
@@ -42,10 +41,18 @@ pnpm dev
 # or
 bun dev
 ```
-
 The website will be viewable at [http://localhost:3000/](http://localhost:3000/).
+### Testing
+First, make sure the database is set up and running either locally or in the docker containter.
+Next, make sure to provide .env.test at the project root (can be the same as .env.local) so jest knows what db to access.
+```bash
+cp .env.local.EXAMPLE .env.test
+```
+Finally, run the testing suite using npm.
+```bash
+npm test
+```
 ### Manual Installation
-
 #### Setting up the database on your machine.
 Install PostgreSQL
 ```bash

@@ -17,13 +17,13 @@ export interface Song {
 export function parseSong(contents: string, filePath: string): Song | null {
   // console.log("Parsing:", filePath);
   let title = "";
-  let composer = "";
+  let composer = null;
   let style = "";
   let tempo = "1";
-  let key_tonic = "TODO";
-  let key_mode = "TODO";
-  let time_numerator = "1";
-  let time_denominator = "1";
+  let key_tonic = "";
+  let key_mode = "";
+  let time_numerator = "";
+  let time_denominator = "";
 
   var isValid = true;
 
@@ -50,6 +50,7 @@ export function parseSong(contents: string, filePath: string): Song | null {
         case "instrument":
         case "mutopiainstrument":
           if (value.replace(/['"]+/g, '') != "Piano") isValid = false;
+          break;
 
       }
     }
@@ -61,20 +62,20 @@ export function parseSong(contents: string, filePath: string): Song | null {
           isValid = false;
           break;
         case "\\key":
-          if (words.length > 2) {
-            //console.log("Fuck that");
-            //isValid = false;
+          if (key_tonic || key_mode)
+            continue;
+          if (words.length >= 2) {
+            //if 
+          }
+          else if (words[1].indexOf("major") != -1) {
+            //console.log(words, filePath);
           }
           break;
       }
     }
   }
 
-  if (
-    !isValid ||
-    !title || !composer || !style ||
-    !tempo || !key_tonic || !key_mode ||
-    !time_numerator || !time_denominator) {
+  if (!isValid || !title || !tempo) {
     return null;
   }
 

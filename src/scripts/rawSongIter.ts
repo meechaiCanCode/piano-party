@@ -7,14 +7,25 @@ import { parseSong } from './parseSong';
 
 async function iterateSongs(dir: string) {
   const entries = await readdir(dir, {withFileTypes: true, recursive: true});
+  var successes = 0;
   for (const entry of entries) {
     if (entry.isFile() && entry.name.endsWith(".ly")) {
       const filePath = join(entry.parentPath, entry.name);
       const contents = await readFile(filePath, {encoding: 'utf8'});
 
-      await parseSong(contents, filePath);
+      const song = parseSong(contents, filePath);
+
+      if (song !== null) {
+        successes++;
+        console.log(song);
+        // Insert song into the database here.
+      }
+      else {
+        // Record filePath for review/removal here.
+      }
     }
   }
+  console.log(successes)
 }
 
 async function main() {

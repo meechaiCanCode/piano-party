@@ -1,19 +1,29 @@
 // Sent .ly file contents and path. Checks song matches criteria for our software
 // (is a piano piece, has tempo, etc. See database schema).
-// If matches, add to db, otherwise, add file path to list for removal
+// Returns parsed song struct to iter for database adding.
 
-import { collectMeta } from "next/dist/build/utils";
+export interface Song {
+  title: string;
+  composer: string;
+  style: string;
+  file_path: string;
+  tempo: number;
+  key_tonic: string;
+  key_mode: string;
+  time_numerator: number;
+  time_denominator: number;
+}
 
-export function parseSong(contents: string, filePath: string) {
-  console.log("Parsing:", filePath);
-  var title: string;
-  var composer: string;
-  var style: string;
-  var tempo: string;
-  var key_tonic: string;
-  var key_mode: string;
-  var time_numerator: string;
-  var time_denominator: string;
+export function parseSong(contents: string, filePath: string): Song | null {
+  // console.log("Parsing:", filePath);
+  let title = "";
+  let composer = "";
+  let style = "";
+  let tempo = "1";
+  let key_tonic = "TODO";
+  let key_mode = "TODO";
+  let time_numerator = "1";
+  let time_denominator = "1";
 
   var isValid = true;
 
@@ -36,29 +46,49 @@ export function parseSong(contents: string, filePath: string) {
           break;
         case "style":
           style = value.replace(/['"]+/g, '');
+          break;
         case "instrument":
         case "mutopiainstrument":
           if (value.replace(/['"]+/g, '') != "Piano") isValid = false;
 
       }
     }
-    else if (trimmedLine.charAt(0) == "\\")
+    else if (trimmedLine.charAt(0) == "\\") {
       var words = trimmedLine.split(" ");
-      if (words){
-        switch (words[0]) {
-          case "\\include":
-            console.log("NO INCLUDE")
-            isValid = false;
-            break;
-        }
+      switch (words[0]) {
+        case "\\include":
+          //console.log("NO INCLUDE:", filePath);
+          isValid = false;
+          break;
+        case "\\key":
+          if (words.length > 2) {
+            //console.log("Fuck that");
+            //isValid = false;
+          }
+          break;
       }
+    }
   }
-  /*
-  if (title) console.log("Title:", title);
-  else console.log("No Title.")
-  if (composer) console.log("Composer:", composer);
-  else console.log("No Composer.")
-  if (style) console.log("Style:", style);
-  else console.log("No style.");*/
 
+  if (
+    !isValid ||
+    !title || !composer || !style ||
+    !tempo || !key_tonic || !key_mode ||
+    !time_numerator || !time_denominator) {
+    return null;
+  }
+
+const song: Song = {
+  title,
+  composer,
+  style,
+  file_path: filePath,
+  tempo: Number(tempo),
+  key_tonic,
+  key_mode,
+  time_numerator: Number(time_numerator),
+  time_denominator: Number(time_denominator),
+};
+
+return song;
 }

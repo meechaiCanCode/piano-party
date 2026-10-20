@@ -1,6 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
-import { createUser } from "@/server/auth";
+import { createUser } from "@/server/db/user";
 
 type State = { error: string };
 

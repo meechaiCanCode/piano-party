@@ -39,7 +39,7 @@ async function iterateSongs(from_dir: string, to_file: string) {
       (good_song.key_mode ? "\'" + good_song.key_mode + "\'" : "NULL") + ", " +
       (good_song.time_numerator ? good_song.time_numerator : "NULL") + ", " +
       (good_song.time_denominator ? good_song.time_denominator : "NULL") +
-      "),\n",
+      (good_song === good_songs[good_songs.length - 1] ? ");\n" : "),\n"),
       { flag: 'a'}
     )
   }

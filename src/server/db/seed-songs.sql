@@ -213,4 +213,4 @@ INSERT INTO Songs (title, composer, style, file_path, tempo, key_tonic, key_mode
 ('Gott, wie gross ist deine Güte', 'BachJS', 'Baroque', '..\..\data\filtered_songs_ly\BachJS\BWV462\bwv_462\bwv_462.ly', 70, 'bes', 'major', 4, 4),
 ('Ermuntre dich, mein schwacher Geist', 'BachJS', 'Baroque', '..\..\data\filtered_songs_ly\BachJS\BWV454\bwv_454\bwv_454.ly', 70, 'f', 'major', 3, 4),
 ('Les Graces', 'Anonymous', 'Popular / Dance', '..\..\data\filtered_songs_ly\Anonymous\lesgraces\lesgraces.ly', 172, 'g', 'major', 6, 8),
-('La Native', 'Anonymous', 'Popular / Dance', '..\..\data\filtered_songs_ly\Anonymous\lanative\lanative.ly', 182, 'd', 'major', 6, 8),
+('La Native', 'Anonymous', 'Popular / Dance', '..\..\data\filtered_songs_ly\Anonymous\lanative\lanative.ly', 182, 'd', 'major', 6, 8);

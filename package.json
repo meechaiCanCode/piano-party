@@ -7,7 +7,8 @@
     "build": "npx next build",
     "start": "npx next start",
     "lint": "eslint",
-    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql"
+    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql",
+    "test": "jest"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -24,6 +25,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "jest": "^30.5.2",
     "typescript": "^5"
   }
 }

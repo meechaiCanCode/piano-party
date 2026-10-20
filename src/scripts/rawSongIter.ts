@@ -27,7 +27,7 @@ async function iterateSongs(from_dir: string, to_file: string) {
     }
   }
   await writeFile(to_file,
-    "INSERT INTO Songs (title, composer, style, file_path, tempo, key_tonic, key_move, time_numerator, time_denominator) VALUES\n");
+    "INSERT INTO Songs (title, composer, style, file_path, tempo, key_tonic, key_mode, time_numerator, time_denominator) VALUES\n");
   for (const good_song of good_songs) {
     await writeFile(to_file, "(" + 
       "\'" + good_song.title + "\', " +
@@ -38,13 +38,13 @@ async function iterateSongs(from_dir: string, to_file: string) {
       (good_song.key_tonic ? "\'" + good_song.key_tonic + "\'" : "NULL") + ", " +
       (good_song.key_mode ? "\'" + good_song.key_mode + "\'" : "NULL") + ", " +
       (good_song.time_numerator ? good_song.time_numerator : "NULL") + ", " +
-      (good_song.time_denominator ? good_song.time_denominator : "NULL") + ", " +
-      ")\n",
+      (good_song.time_denominator ? good_song.time_denominator : "NULL") +
+      "),\n",
       { flag: 'a'}
     )
   }
   for (const bad_song_path of bad_song_paths) {
-    await writeFile("../../data/raw_songs_ly/bad-songs.txt",
+    await writeFile("../../data/bad-songs.txt",
       bad_song_path + "\n",
       { flag: 'a'}
     )
@@ -56,13 +56,9 @@ async function main() {
   const to_file = process.argv[3];
 
 
-  if (!from_dir) {
+  if (!from_dir || !to_file) {
     throw new Error("Usage: npx tsx rawSongIter.ts <song_directory> <seed_file>")
   }
-  if (!to_file) {
-    throw new Error("Usage: npx tsx rawSongIter.ts <song_directory> <seed_file>")
-  }
-
   await iterateSongs(from_dir, to_file);
 }
 

@@ -7,7 +7,7 @@
     "build": "npx next build",
     "start": "npx next start",
     "lint": "eslint",
-    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql"
+    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql -f src/server/db/seed-songs.sql"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

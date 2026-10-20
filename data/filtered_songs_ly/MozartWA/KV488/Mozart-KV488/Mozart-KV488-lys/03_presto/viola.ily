@@ -1,2 +1,0 @@
-viola = \relative c' {
-}

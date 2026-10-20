@@ -1,3 +1,0 @@
-\header {
-	subtitle 			= "III. Finale"
-}

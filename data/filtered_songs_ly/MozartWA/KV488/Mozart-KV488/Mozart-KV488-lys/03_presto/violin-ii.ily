@@ -1,2 +1,0 @@
-violinII = \relative c'' {
-}

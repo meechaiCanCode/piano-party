@@ -13,7 +13,7 @@ async function deleteFiles(list_file: string, from_dir: string) {
         .map(filePath => resolve(filePath))
     );
 
-  let deleted_songs = 0;
+  let deleted_files = 0;
   let deleted_folders = 0;
 
   async function cleanDirectory(dir: string) {
@@ -32,18 +32,19 @@ async function deleteFiles(list_file: string, from_dir: string) {
         }
       }
       else if (
-        entry.isFile() &&
-        bad_song_paths.has(filePath)
+        entry.isFile() && (
+        !entry.name.endsWith(".ly") || 
+        bad_song_paths.has(filePath))
       ) {
         await unlink(filePath);
-        deleted_songs++;
+        deleted_files++;
       }
     }
   }
 
   await cleanDirectory(resolve(from_dir));
 
-  console.log('Deleted songs:', deleted_songs);
+  console.log('Deleted files:', deleted_files);
   console.log('Deleted empty folders:', deleted_folders);
 }
 

@@ -1,2 +1,0 @@
-flute = \relative c''' {
-}

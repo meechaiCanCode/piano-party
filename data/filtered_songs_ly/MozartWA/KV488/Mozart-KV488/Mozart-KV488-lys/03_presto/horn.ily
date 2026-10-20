@@ -1,2 +1,0 @@
-horn = \relative c'' {
-}

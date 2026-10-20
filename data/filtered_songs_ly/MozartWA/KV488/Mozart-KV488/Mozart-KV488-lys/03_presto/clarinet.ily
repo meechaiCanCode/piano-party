@@ -1,2 +1,0 @@
-clarinet = \relative c'' {
-}

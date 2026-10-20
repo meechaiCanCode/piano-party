@@ -1,2 +1,0 @@
-bassoon = \relative c {
-}

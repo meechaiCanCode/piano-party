@@ -1,3 +1,0 @@
-\header {
-	subtitle 			= "II. Canzonetta"
-}

@@ -1,6 +1,6 @@
 .card {
-    background-color: #2f2f2f;
-    border: 1px solid #3a3a3a;
+    background-color: #f2f2f2;
+    border: 1px solid #2f2f2f;
     border-radius: 12px;
     padding: 2.5rem;
     display: flex;
@@ -36,16 +36,16 @@
 .field input {
     width: 100%;
     padding: 0.65rem 0.85rem;
-    border: 1px solid #444;
+    border: 1px solid #2f2f2f;
     border-radius: 8px;
-    background-color: #1b1b1b;
-    color: #f2f2f2;
+    background-color: #f2f2f2;
+    color: #1b1b1b;
     font-size: 0.95rem;
 }
 
 .form input:focus {
     outline: none;
-    border-color: #AADDAA;
+    border-color: #9292ff;
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2)
 }
 
@@ -53,7 +53,7 @@
     padding: 0.7rem;
     border: none;
     border-radius: 6px;
-    background-color: #AADDAA;
+    background-color: #9292ff;
     color: #111;
     font-size: 0.95rem;
     font-weight: 600;
@@ -62,7 +62,7 @@
 }
 
 .form button:hover {
-    background-color: #669966;
+    background-color: #7272ff;
 }
 
 .form button:disabled {
@@ -72,7 +72,7 @@
 }
 
 .form button:focus-visible {
-  outline: 2px solid #AADDAA;
+  outline: 2px solid #9292ff;
   outline-offset: 2px;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .passwordRow button {
-  width: 75px;
+  width: 80px;
   font-weight: 600;
   background-color: transparent;
   border: 1px solid #444;
@@ -90,13 +90,13 @@
 }
 
 .passwordRow button:hover {
-  border-color: #AADDAA;
-  color: #AADDAA;
+  border-color: #9292ff;
+  color: #9292ff;
   background-color: transparent;
 }
 
 .label{
-    color: #f2f2f2;
+    color: #2f2f2f;
     font-size: 16px;
 }
 
@@ -107,7 +107,7 @@
   border-bottom: 1px solid #3a3a3a;
   width: 100%;
   text-align: center;
-  color: #f2f2f2;
+  color: #1b1b1b;
 }
 
 .error {

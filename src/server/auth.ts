@@ -1,6 +1,5 @@
 import { pool } from "@/server/db";
 import { User, USER_FIELDS } from "@/server/db/user";
-import { DatabaseError } from "pg";
 
 export type UserWithHash = Readonly<User & {passwordHash : string}>
 

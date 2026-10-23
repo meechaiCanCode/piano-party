@@ -6,7 +6,7 @@
     "dev": "npx next dev",
     "build": "npx next build",
     "start": "npx next start",
-    "lint": "eslint",
+    "lint": "eslint --cache --cache-location node_modules/.cache/.eslintcache",
     "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql",
     "test": "jest"
   },

@@ -6,7 +6,7 @@ export type UserWithHash = Readonly<User & {passwordHash : string}>
 /**
  * Retrieves the user UUID from the DB, given a valid username.
  * @param username 
- * @returns User UUID if found, null otherwise
+ * @returns A User object, null if nothing found
  */
 export async function findUserWithHashByUsername(
   username: string

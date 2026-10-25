@@ -62,10 +62,10 @@ export async function getUserBySession(
  * @param password 
  * @returns A User object for the newly created user.
  */
-export async function createUser(username : string, password : string): Promise<string | null> {
+export async function createUser(username : string, password : string): Promise<User | null> {
   try {
     const passwordHash = await bcrypt.hash(password, 12);
-    const result = await pool.query("INSERT INTO Users (username, password_hash) VALUES ($1, $2) RETURNING id", [username, passwordHash]);
+    const result = await pool.query(`INSERT INTO Users (username, password_hash) VALUES ($1, $2) RETURNING ${USER_FIELDS}`, [username, passwordHash]);
     return result.rows[0];
   }
   catch (e) {

@@ -49,7 +49,7 @@ export async function getCurrentUser() : Promise< User | null> {
  * @param userId User to create a session for
  * @returns A Session object for the newly created session
  */
-export async function createSession(userId: string): Promise<Session> {
+export async function createSession(userId : string): Promise<Session> {
   const sessionResult = await pool.query(`INSERT INTO Sessions (user_id) VALUES ($1) RETURNING ${SESSION_FIELDS}`, [userId]);
 
   if (!sessionResult.rows[0])

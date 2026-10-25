@@ -16,6 +16,18 @@ CREATE TABLE Sessions (
 );
 
 CREATE TABLE Songs (
-    id SERIAL PRIMARY KEY
-    -- meechai's job :3
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    composer TEXT,
+    style TEXT,
+
+    file_path TEXT NOT NULL UNIQUE,
+
+    tempo REAL,
+    key_tonic TEXT,
+    key_mode TEXT,
+    time_numerator REAL,
+    time_denominator REAL,
+
+    difficulty REAL -- For Elena
 );

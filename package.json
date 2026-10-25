@@ -7,7 +7,7 @@
     "build": "npx next build",
     "start": "npx next start",
     "lint": "eslint --cache --cache-location node_modules/.cache/.eslintcache",
-    "db:reset": "set -a && . ./.env.local && set +a && psql \"$DATABASE_URL\" -f src/server/db/schema.sql -f src/server/db/seed.sql",
+    "db:reset": "node --env-file=.env.local scripts/db-reset.mjs",
     "test": "jest"
   },
   "dependencies": {

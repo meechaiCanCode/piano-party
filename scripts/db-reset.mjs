@@ -9,7 +9,7 @@ const client = new Client({ connectionString: process.env.DATABASE_URL });
 await client.connect();
 
 try {
-  for (const file of ["schema.sql", "seed.sql"]) {
+  for (const file of ["schema.sql", "seed.sql", "seed-songs.sql"]) {
     const sql = readFileSync(path.join(dbDir, file), "utf8");
     await client.query(sql);
     console.log(`Ran ${file}`);

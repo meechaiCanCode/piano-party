@@ -83,16 +83,13 @@
 
 .passwordRow button {
   width: 80px;
-  font-weight: 600;
-  background-color: transparent;
-  border: 1px solid #444;
-  color: #ccc;
+  font-weight: 400;
+  background-color: #c2c2c2;
+  color: #1b1b1b;
 }
 
 .passwordRow button:hover {
-  border-color: #9292ff;
-  color: #9292ff;
-  background-color: transparent;
+  background-color: #a2a2a2;
 }
 
 .label{

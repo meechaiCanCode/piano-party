@@ -7,7 +7,6 @@ import { parseSong } from './parseSong';
 
 async function iterateSongs(from_dir: string, to_file: string) {
   const entries = await readdir(from_dir, {withFileTypes: true, recursive: true});
-  var successes = 0;
 
   const good_songs = [];
   const bad_song_paths = []

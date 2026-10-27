@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import {Navbar} from "./Navbar";
-import { Fraunces, IBM_Plex_Sans } from "next/font/google";
+import { Cascadia_Mono, Fraunces, IBM_Plex_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Piano Party",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const display = Fraunces({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-display" });
-const body = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-body" });
+const body = Cascadia_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-body" });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

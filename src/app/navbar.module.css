@@ -1,8 +1,7 @@
 .navbar {
     width: 100%;
-    background-color: #f2f2f2;
-    border-bottom: 2px solid #1b1b1b;
-    color: #1b1b1b;
+    background-color: #6c6cff;
+    color: #f2f2f2;
     padding: 5px 15px;
     display: flex;
     justify-content: space-between;
@@ -17,19 +16,49 @@
 }
 
 .navbar .title {
-    font-family:  var(--font-display), serif;
+    font-family:  var(--font-body), serif;
     font-size: 1.25rem;
+    font-weight: 600;
     text-decoration: none;
-    color: #1b1b1b;
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title img {
+    height: 2rem;
+    width: auto;
+    display: block;
+}
+.navbar .search {
+    font-family:  var(--font-body), serif;
+    font-size: 1rem;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+    width: 31ch;
+    border-radius: 9999px 9999px 9999px 9999px;
+    border: none;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .navbar .account {
     font-family:  var(--font-body), serif;
     font-weight: 600;
     text-decoration: none;
-    color: #1b1b1b;
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
+.account img {
+    height: 1.5rem;
+    width: auto;
+    display: block;
+}
 .navbar .authButtons {
     display: flex;
     align-items: center;

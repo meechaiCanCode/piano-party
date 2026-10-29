@@ -54,6 +54,11 @@
     gap: 0.5rem;
 }
 
+.navbar .account:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .account img {
     height: 1.5rem;
     width: auto;

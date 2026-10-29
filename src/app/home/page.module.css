@@ -29,6 +29,7 @@
 
 .card h2:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .card p {

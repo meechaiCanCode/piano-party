@@ -43,11 +43,12 @@ jobs:
       - name: Create .env.local
         run: cp .env.local.EXAMPLE .env.local
 
-      - name: Load schema and seed data
-        run: npm run db:reset
-
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run test:ci
-      - run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm run test:ci
+      - name: Build
+        run: npm run build
   

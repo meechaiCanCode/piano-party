@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import * as user from "@/server/db/user";
 import * as session from "@/server/db/session";
 
@@ -7,7 +6,6 @@ let testUserID : string | null;
 
 
 beforeEach(async () => {
-    execSync("npm run --silent db:reset", { stdio: "ignore" });
     testUserID = (await user.getUserByUsername(TEST_USERNAME))?.id ?? null;
 });
 

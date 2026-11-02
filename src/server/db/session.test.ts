@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import * as user from "@/server/db/user";
 import * as session from "@/server/db/session";
 
@@ -7,11 +6,9 @@ import * as session from "@/server/db/session";
 let testSession : session.Session
 
 beforeEach(async () => {
-    execSync("npm run --silent db:reset", { stdio: "ignore" });
     const testUserId = (await user.getUserByUsername("john"))?.id
     if (!testUserId)
         throw Error("Test user not found; unable to execute tests.");
-
     testSession = await session.createSession(testUserId);
 });
 
@@ -31,12 +28,12 @@ describe("getSessionByToken", () => {
 
 describe("deleteSession", () => {
     test("Valid session", async () => {
-        session.deleteSession(testSession.token)
+        await session.deleteSession(testSession.token)
         const sesh = await session.getSessionByToken(testSession.token)
         expect(sesh).toBeNull();
     });
     test("Invalid session", async () => {
-        session.deleteSession("ce40c0a8-2d05-4775-a1eb-849bb2601e90")
+        await session.deleteSession("ce40c0a8-2d05-4775-a1eb-849bb2601e90")
         const sesh = await session.getSessionByToken(testSession.token)
         expect(sesh).toEqual(expect.anything()); // not null or undef
     });

@@ -25,7 +25,7 @@ export function parseSong(contents: string, filePath: string): Song | null {
   let time_numerator = "";
   let time_denominator = "";
 
-  var isValid = true;
+  let isValid = true;
 
   for (const line of contents.split("\n")) {
     if (!isValid) break;
@@ -78,7 +78,7 @@ export function parseSong(contents: string, filePath: string): Song | null {
       }
     }
     else if (trimmedLine.charAt(0) == "\\") {
-      var words = trimmedLine.split(" ");
+      const words = trimmedLine.split(" ");
       switch (words[0]) {
         case "\\include":
           isValid = false;

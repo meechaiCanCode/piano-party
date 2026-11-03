@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./footer.module.css";
-import { getCurrentUser } from "@/server/db/session";
 
 export async function Footer(){
 

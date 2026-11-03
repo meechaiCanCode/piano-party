@@ -27,5 +27,5 @@ export async function login(_prev: State, formData: FormData): Promise<State> {
     maxAge: 60 * 60 * 24 * 7,
   });
 
-  redirect("/");
+  redirect("/home");
 }

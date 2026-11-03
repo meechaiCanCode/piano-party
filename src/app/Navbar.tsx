@@ -7,9 +7,10 @@ export async function Navbar(){
 
   return (
       <div className={styles.navbar}>
-        <Link href="/" className={styles.title}>Piano Party</Link>
+        <Link href="/" className={styles.title}><img src="/images/logo-notext-white.svg" alt="Piano Party" />Piano Party</Link>
+        <input type="text" className={styles.search} placeholder="Search Title, Composer, Genre" ></input>
         {user ? (
-          <span className={styles.account}>{user.username}</span>    
+          <span className={styles.account}>{user.username}<img src="/images/burger.svg"/></span>    
         ) : (
             <div className={styles.authButtons}>
               <Link href="/signup" className={styles.account}>

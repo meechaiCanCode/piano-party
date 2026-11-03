@@ -1,7 +1,40 @@
 .content {
     background-color: #f2f2f2;
     max-width: 85vw;
-    min-width: 70vw;
-    padding: 5px;
+    min-width: 40vw;
+    padding: 2rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 50%;
+}
+
+.content img {
+    width: 30vw;
+    height: auto;
+}
+
+.content .buttons {
+    padding: 2rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    display:flex;
+    gap: 2vw;
+}
+
+.content .buttons a {
+  background-color: #6c6cff;
+  text-decoration: none;
+  border: none;
+  border-radius: 9999px;
+  color: #f2f2f2;
+  padding: 10px 32px;
+  display: inline-block;
+  font-size: 1.5vw;
+  cursor: pointer;
 }

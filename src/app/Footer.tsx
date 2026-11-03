@@ -3,7 +3,6 @@ import styles from "./footer.module.css";
 import { getCurrentUser } from "@/server/db/session";
 
 export async function Footer(){
-  const user = await getCurrentUser();
 
   return (
       <div className={styles.footer}>

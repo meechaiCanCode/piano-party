@@ -21,6 +21,8 @@
   background: #f2f2f2;
   border: 0.175rem solid #6c6cff;
   border-radius: 1rem;
+  color: inherit;
+  text-decoration: none;
 }
 
 .card h2 {

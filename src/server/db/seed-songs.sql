@@ -1,4 +1,5 @@
 INSERT INTO Songs (title, composer, style, file_path, tempo, key_tonic, key_mode, time_numerator, time_denominator) VALUES
+('Twinkle Twinkle Little Star', 'Traditional', 'Nursery rhyme', '..\..\data\test_songs_ly\twinkle.ly', 100, 'c', 'major', 4, 4),
 ('Les Lanciers', 'Yaniewicz', 'Popular / Dance', '..\..\data\filtered_songs_ly\Yaniewicz\leslanciers\leslanciers.ly', 172, 'c', 'major', 4, 4),
 ('Traditioner af Swenska Folk-Dansar, 3rd part, nr 9', 'Traditional', 'Folk', '..\..\data\filtered_songs_ly\Traditional\traditioner_af_swenska_folk_dansar.3.9\traditioner_af_swenska_folk_dansar.3.9.ly', 100, 'e', 'minor', 3, 4),
 ('Traditioner af Swenska Folk-Dansar, 3rd part, nr 8', 'Traditional', 'Folk', '..\..\data\filtered_songs_ly\Traditional\traditioner_af_swenska_folk_dansar.3.8\traditioner_af_swenska_folk_dansar.3.8.ly', 70, 'a', 'minor', 2, 4),

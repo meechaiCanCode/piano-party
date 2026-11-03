@@ -30,11 +30,11 @@ export default async function Home({ searchParams, }: {
 
             <div className={styles.grid}>
                 {songs.slice(0, 20).map((song) => (
-                    <article key={song.id} className={styles.card}>
-                        <h2>{song.title}</h2>
-                        <p>{song.composer || "Unknown composer"}</p>
-                        <p>{song.style || "Unspecified genre"}</p>
-                    </article>
+                    <Link key={song.id} href={`/songs/${song.id}`} className={styles.card}>
+                    <h2>{song.title}</h2>
+                    <p>{song.composer || "Unknown composer"}</p>
+                    <p>{song.style || "Unspecified genre"}</p>
+                </Link>
                 ))}
             </div>
 

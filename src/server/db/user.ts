@@ -8,7 +8,7 @@ export type User = Readonly<{
     username : string,
     isAdmin : boolean
 }>
-export const USER_FIELDS = `id, username, "is_admin" AS isAdmin`;
+export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin"`;
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
 
 /**

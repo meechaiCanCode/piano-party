@@ -23,3 +23,8 @@ p, h1 {
     padding: 5px;
     color: #1b1b1b;
 }
+
+:root {
+  --font-display: "Fraunces", serif;
+  --font-body: "Cascadia Mono", monospace;
+}

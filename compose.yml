@@ -1,4 +1,15 @@
 services:
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/ppdb
+    ports:
+      - "3000:3000"
+
   db:
     image: postgres:18
     restart: unless-stopped

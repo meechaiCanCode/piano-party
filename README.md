@@ -6,7 +6,7 @@ Piano Party is a Next.js based webapp that gamifies learning sheet music by allo
 
 ## Features
 
-- n+ Songs: Choose from several different options to learn music across various genres and difficulties.
+- 200+ Songs: Choose from several different options to learn music across various genres and difficulties.
 - Receive Feedback: Following a song session, receive immediate feedback on details of a performance, like missed notes and timing.
 - Track Progress: Progress is saved and tracked between sessions so users can observe changes and improvements in their playing.
 
@@ -16,8 +16,8 @@ First, install dependencies.
 ```bash
 npm install
 ```
-### Database container
-The database can be set up using the provided docker compose command.
+### Docker
+The database and web app can both be started with the provided docker compose command. The app image installs LilyPond, so no local LilyPond install is needed.
 
 First, open docker desktop.
 
@@ -29,17 +29,7 @@ Use the provided credentials or update the docker compose command and .env.local
 mv .env.local.EXAMPLE .env.local
 ```
 ```bash
-docker compose up -d
-```
-### Run the web server
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker compose up -d --build
 ```
 The website will be viewable at [http://localhost:3000/](http://localhost:3000/).
 ### Testing
@@ -91,3 +81,8 @@ This will wipe the current database and rebuild from `server/db/schema.sql`, the
 |---|---|
 | TheNoobyApple:securepass | Admin account |
 | john:jdlover | User account |
+
+## Credits
+Piano samples are from the [Salamander Grand Piano](https://archive.org/details/SalamanderGrandPianoV3) by Alexander Holm, licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
+Sheet music files are from the [Mutopia Project](https://www.mutopiaproject.org/), licensed under [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/).

@@ -17,6 +17,8 @@ export async function login(_prev: State, formData: FormData): Promise<State> {
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) return { error: "Invalid username or password" };
 
+  if(user.isBanned) return { error: "User has been banned." };
+
   const token = (await createSession(user.id)).token;
 
   (await cookies()).set("session", token, {

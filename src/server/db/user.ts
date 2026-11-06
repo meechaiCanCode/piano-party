@@ -6,9 +6,10 @@ import { Session } from "@/server/db/session"
 export type User = Readonly<{
     id : string,
     username : string,
-    isAdmin : boolean
+    isAdmin : boolean,
+    isBanned : boolean,
 }>
-export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin"`;
+export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "is_banned" AS "isBanned"`;
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
 
 /**
@@ -75,4 +76,14 @@ export async function createUser(username : string, password : string): Promise<
 
     throw e;
   }
+}
+
+export async function banUser(username : string): Promise<User | null> {
+    try{
+        const res = await pool.query(`UPDATE Users SET is_banned = TRUE WHERE username = $1 RETURNING ${USER_FIELDS}`, [username])
+        return res.rows[0] ?? null;
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
 }

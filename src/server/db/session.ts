@@ -41,6 +41,7 @@ export async function getCurrentSession() : Promise<Session | null> {
  */
 export async function getCurrentUser() : Promise< User | null> {
   const user = await getUserBySession(await getCurrentSession());
+  if(user && user.isBanned) return null;
   return user ?? null
 }
 

@@ -1,6 +1,11 @@
 import { pool } from "@/server/db";
 import { getUserByUserId, User, USER_FIELDS } from "./user";
 
+/**
+ * Checks if a given user is banned. Users are considered banned if their banExpires field is set to a future date. They are considered unbanned if their banExpires field is set to a past date or null.
+ * @param userId User to check
+ * @returns True if the user is banned, false otherwise. Null if no user was found
+ */
 export async function isUserBanned(userId : string | null) : Promise<boolean | null> {
   if (!userId)
     return null;

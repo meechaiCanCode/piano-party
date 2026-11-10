@@ -5,7 +5,8 @@ CREATE TABLE Users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     username TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT FALSE
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+    ban_expires TIMESTAMPTZ
 );
 
 CREATE TABLE Sessions (

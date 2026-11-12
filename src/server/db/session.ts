@@ -69,5 +69,5 @@ export async function deleteSession(token: string): Promise<void> {
  * Deletes expired sessions from the DB.
  */
 export async function pruneSessions(): Promise<void> {
-  pool.query("DELETE FROM Sessions WHERE time_expires < now()")
+  await pool.query("DELETE FROM Sessions WHERE time_expires < now()")
 }

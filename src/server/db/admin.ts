@@ -1,5 +1,19 @@
 import { pool } from "@/server/db";
-import { getUserByUserId, isBanActive, User, USER_FIELDS } from "./user";
+import { getUserByUserId, isBanActive, User, USER_FIELDS, USER_QUERY } from "./user";
+
+// Perma ban date. Time machine vulnerability.
+export const PERMANENT_BAN = new Date("9999-12-31T00:00:00Z");
+
+/**
+ * Gets all users whose ban has not yet expired, soonest-expiring first.
+ * @returns Banned users, empty if none
+ */
+export async function getBannedUsers(): Promise<User[]> {
+  const result = await pool.query<User>(
+    `${USER_QUERY} WHERE ban_expires > now() ORDER BY ban_expires`
+  );
+  return result.rows;
+}
 
 /**
  * Checks if a given user is banned. Users are considered banned if their banExpires field is set to a future date. They are considered unbanned if their banExpires field is set to a past date or null.

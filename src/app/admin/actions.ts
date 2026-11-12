@@ -1,17 +1,18 @@
 "use server";
 import { getUserByUsername, isBanActive } from "@/server/db/user";
-import { setUserBan } from "@/server/db/admin";
+import { setUserBan, PERMANENT_BAN } from "@/server/db/admin";
 import { getCurrentUser } from "@/server/db/session";
+import { revalidatePath } from "next/cache";
 
 export type BanState = { message: string; expires?: string | null };
 
-// Time machine PBI vulnerability!!!
-const PERMANENT_BAN = new Date("9999-12-31T00:00:00Z");
-
 function formatBanEnd(expires: string | null | undefined) {
   const dateFmt = new Intl.DateTimeFormat(undefined, {
-    dateStyle: "short",   // "11/12/2026"
-    timeStyle: "short",    // "1:24 PM"
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",     // full year: 3000, not 00
+    hour: "numeric",
+    minute: "2-digit",
   });
   if (expires === undefined) return "";
   if (expires === null) return " permanently";
@@ -39,7 +40,7 @@ export async function ban(_prev: BanState, formData: FormData): Promise<BanState
     if (expiry.getTime() <= Date.now()) return { message: "Ban end must be in the future." };
 
     const user = target && await setUserBan(target.id, expiry);
-
+    revalidatePath("/admin");
     if (!user) return { message: `No user found with username "${username}".` };
   return { message: `Banned user "${user.username}"`, expires: raw ? expiry.toISOString() : null };
 }
@@ -61,13 +62,14 @@ export async function unban(_prev: BanState, formData: FormData): Promise<BanSta
   }
   const timeStr = formatBanEnd(user.banExpires.toISOString());
   if (!isBanActive(user)) {
-    return {message: `User ${username}'s ban has expired. (${timeStr})`}
+    return {message: `User "${username}"'s ban has expired. (${timeStr})`}
   }
 
   const unbanned = await setUserBan(user.id, null);
+  revalidatePath("/admin");
   if (!unbanned) return {message: `Could not unban "${username}".`}
 
-  return { message: `User "${username}" unbanned. (ban expiry was ${timeStr})` };
+  return { message: `User "${username}" unbanned.` };
 }
 
 export async function moderate(prev: BanState, formData: FormData): Promise<BanState> {

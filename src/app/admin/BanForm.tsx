@@ -2,14 +2,11 @@
 import { useActionState } from "react";
 import { moderate, BanState} from "./actions";
 import styles from "./admin.module.css";
+import { dateFmt } from "./BanTime";
 
 const initialState: BanState = { message: "" };
 
 function formatBanEnd(expires: string | null | undefined) {
-  const dateFmt = new Intl.DateTimeFormat(undefined, {
-    dateStyle: "short",   // "11/12/2026"
-    timeStyle: "short",    // "1:24 PM"
-  });
   if (expires === undefined) return "";
   if (expires === null) return " permanently";
   return ` until ${dateFmt.format(new Date(expires))}`;

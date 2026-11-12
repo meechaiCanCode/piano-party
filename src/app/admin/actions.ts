@@ -61,9 +61,6 @@ export async function unban(_prev: BanState, formData: FormData): Promise<BanSta
     return { message: `User "${username}" not banned.`}
   }
   const timeStr = formatBanEnd(user.banExpires.toISOString());
-  if (!isBanActive(user)) {
-    return {message: `User "${username}"'s ban has expired. (${timeStr})`}
-  }
 
   const unbanned = await setUserBan(user.id, null);
   revalidatePath("/admin");

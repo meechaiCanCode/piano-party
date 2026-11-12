@@ -13,7 +13,7 @@ const SESSION_QUERY = `SELECT ${SESSION_FIELDS} FROM Sessions`;
 
 /**
  * Gets the session associated with the given token.
- * @param token 
+ * @param token
  * @returns A Session object
  */
 export async function getSessionByToken(
@@ -27,7 +27,7 @@ export async function getSessionByToken(
 }
 
 /**
- * 
+ *
  * @returns A Session object, or null if there is no active session
  */
 export async function getCurrentSession() : Promise<Session | null> {
@@ -36,7 +36,7 @@ export async function getCurrentSession() : Promise<Session | null> {
 }
 
 /**
- * 
+ *
  * @returns A User object, or null if there is no active session
  */
 export async function getCurrentUser() : Promise< User | null> {
@@ -59,15 +59,15 @@ export async function createSession(userId : string): Promise<Session> {
 
 /**
  * Deletes the session associated with the given token.
- * @param token 
+ * @param token
  */
 export async function deleteSession(token: string): Promise<void> {
-  pool.query("DELETE FROM Sessions WHERE token = $1", [token]);
+  await pool.query("DELETE FROM Sessions WHERE token = $1", [token]);
 }
 
 /**
  * Deletes expired sessions from the DB.
  */
 export async function pruneSessions(): Promise<void> {
-  pool.query("DELETE FROM Sessions WHERE time_expires < now()")
+  await pool.query("DELETE FROM Sessions WHERE time_expires < now()")
 }

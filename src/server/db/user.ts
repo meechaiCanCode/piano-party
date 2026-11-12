@@ -13,6 +13,15 @@ export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "ban_expires"
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
 
 /**
+ * Checks whether an already-fetched user is currently banned (banExpires is in the future).
+ * @param user
+ * @returns True if the user's ban has not yet expired
+ */
+export function isBanActive(user : Pick<User, "banExpires">) : boolean {
+  return !!user.banExpires && user.banExpires.getTime() > Date.now();
+}
+
+/**
  * Gets user from the DB using a given username.
  * @param username 
  * @returns A User object, null if nothing found

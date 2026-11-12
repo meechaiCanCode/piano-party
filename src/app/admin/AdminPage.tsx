@@ -14,9 +14,7 @@ export async function AdminPage() {
         );
     } else {
         return (
-            <p className={styles.card}>You're not an admin. It was worth a shot, though!</p>
+            <p className={styles.card}>You&apos;re not an admin. It was worth a shot, though!</p>
         );
     }
-  
 }
-

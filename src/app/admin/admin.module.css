@@ -1,3 +1,14 @@
+.row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap;          /* stacks on narrow screens */
+}
+
+.row > * {
+  flex: 1 1 200px;          /* side by side, but wrap below ~200px each */
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -10,7 +21,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; 
+  gap: 1.25rem;
   width: 100%;
 }
 
@@ -73,30 +84,35 @@
     width: 100%;
     transition: background-color 0.15s ease;
 }
-.form button:hover {
+
+.unban {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #aaddaa;
+  color: #1b1b1b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ban:hover {
   background-color: #cc3333;
   outline-offset: 2px;
 }
 
-.form button:focus-visible {
+.unban:hover {
+  background-color: #88aa88;
+  outline-offset: 2px;
+}
+.ban:focus-visible {
   outline: 2px solid #dd4444;
   outline-offset: 2px;
 }
-
-.passwordRow{
-    display: flex;
-    gap: 5px;
-}
-
-.passwordRow button {
-  width: 80px;
-  font-weight: 400;
-  background-color: #c2c2c2;
-  color: #1b1b1b;
-}
-
-.passwordRow button:hover {
-  background-color: #a2a2a2;
+.unban:focus-visible {
+  outline: 2px solid #aaddaa;
+  outline-offset: 2px;
 }
 
 .label{
@@ -122,4 +138,3 @@
   border-radius: 6px;
   padding: 0.5rem 0.75rem;
 }
-

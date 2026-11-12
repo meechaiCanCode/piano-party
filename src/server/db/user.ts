@@ -7,10 +7,19 @@ export type User = Readonly<{
     id : string,
     username : string,
     isAdmin : boolean,
-    isBanned : boolean,
+    banExpires : Date | null // Null means not banned
 }>
-export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "is_banned" AS "isBanned"`;
+export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "ban_expires" AS "banExpires"`;
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
+
+/**
+ * Checks whether an already-fetched user is currently banned (banExpires is in the future).
+ * @param user
+ * @returns True if the user's ban has not yet expired
+ */
+export function isBanActive(user : Pick<User, "banExpires">) : boolean {
+  return !!user.banExpires && user.banExpires.getTime() > Date.now();
+}
 
 /**
  * Gets user from the DB using a given username.
@@ -76,14 +85,4 @@ export async function createUser(username : string, password : string): Promise<
 
     throw e;
   }
-}
-
-export async function banUser(username : string): Promise<User | null> {
-    try{
-        const res = await pool.query(`UPDATE Users SET is_banned = TRUE WHERE username = $1 RETURNING ${USER_FIELDS}`, [username])
-        return res.rows[0] ?? null;
-    } catch (e) {
-        console.log(e);
-        throw e;
-    }
 }

@@ -6,7 +6,7 @@ CREATE TABLE Users (
     username TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-    is_banned BOOLEAN NOT NULL DEFAULT FALSE
+    ban_expires TIMESTAMPTZ
 );
 
 CREATE TABLE Sessions (

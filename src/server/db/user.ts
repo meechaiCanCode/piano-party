@@ -6,9 +6,10 @@ import { Session } from "@/server/db/session"
 export type User = Readonly<{
     id : string,
     username : string,
-    isAdmin : boolean
+    isAdmin : boolean,
+    banExpires : Date | null // Null means not banned
 }>
-export const USER_FIELDS = `id, username, "is_admin" AS isAdmin`;
+export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "ban_expires" AS "banExpires"`;
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
 
 /**

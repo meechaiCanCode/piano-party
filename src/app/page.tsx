@@ -1,6 +1,8 @@
-import styles from "./index.module.css"
+import styles from "./index.module.css";
+import { getCurrentUser } from "@/server/db/session";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getCurrentUser();
   return (
       <main>
       <div className={styles.content}>
@@ -9,8 +11,16 @@ export default function Home() {
         <h3>Learn piano with gamified sheet-music playing on the web.</h3>
         <p>Piano Party is a Next.js based webapp that gamifies learning sheet music by allowing users to play music on their keyboard with feedback on their performance.</p>
         <div className={styles.buttons}>
-          <a href="/signup">Sign Up!</a>
-          <a href="/home">Continue as Guest.</a>
+          {
+            user ? (
+              <a href="/home">Play</a>
+            ) : (
+              <>
+                <a href="/signup">Sign Up!</a>
+                <a href="/home">Continue as Guest.</a>
+              </>
+            )
+          }
         </div>
       </div>
       </main>

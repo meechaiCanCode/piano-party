@@ -8,7 +8,7 @@ export async function Navbar(){
 
   return (
       <div className={styles.navbar}>
-        <Link href="/" className={styles.title}><img src="/images/logo-notext-white.svg" alt="Piano Party" />Piano Party</Link>
+      <Link href={user ? "/home" : "/"} className={styles.title}><img src="/images/logo-notext-white.svg" alt="Piano Party" />Piano Party</Link>
         <input type="text" className={styles.search} placeholder="Search Title, Composer, Genre" ></input>
         {user ? (
         <HamburgerMenu username={user.username} isAdmin={user.isAdmin}/>
@@ -21,7 +21,7 @@ export async function Navbar(){
             <Link href="/login" className={styles.account}>
               Login
             </Link>
-            </div>
+          </div>
         )}
       </div>
   );

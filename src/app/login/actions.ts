@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
 import { findUserWithHashByUsername } from "@/server/auth";
+import { isBanActive } from "@/server/db/user";
 import {createSession } from "@/server/db/session";
 
 type State = { error: string };
@@ -16,6 +17,8 @@ export async function login(_prev: State, formData: FormData): Promise<State> {
 
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) return { error: "Invalid username or password" };
+
+  if(isBanActive(user)) return { error: "User has been banned." };
 
   const token = (await createSession(user.id)).token;
 

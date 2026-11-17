@@ -35,3 +35,11 @@ describe("isUserBanned", () => {
         expect(result).toEqual(false);
     });
 });
+
+describe("getBannedUsers", () => {
+  test("Returns all banned users, sorted by expiry", async () => {
+    const banned = await admin.getBannedUsers();
+    expect(banned[0].username).toEqual("MrSoonUnbanned");
+    expect(banned[1].username).toEqual("MrBanned");
+  })
+})

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<score-partwise version="4.0">
+  <movement-title>Les étoiles d'or</movement-title>
+  <identification>
+    <encoding>
+      <software>ly-to-musicxml</software>
+    </encoding>
+    <creator type="composer">L. Streabbog (Louis Gobbaerts)</creator>
+    <rights>font-name DejaVu Sans, Bold baseline-skip 0 http://www.MutopiaProject.org 9 Mutopia http://www.MutopiaProject.org 12 1.0 1.0 1.0 448 9 Project font-name DejaVu Sans, Bold baseline-skip 0 11.9 0.5 0.5 0.5 448 11.9 0.5 0.5 0.5 448 font-name DejaVu Sans,sans-serif baseline-skip 0 8 Typeset using http://www.lilypond.org LilyPond 169 2015 by Masamichi Hosoda 8212 Mutopia-2015/12/27-2092 8 http://creativecommons.org/licenses/by-sa/4.0/ Creative Commons Attribution ShareAlike 4.0 International License 8 8212 8 free to distribute, modify, and perform 13 1.0 1.0 1.0 448</rights>
+  </identification>
+  <part-list>
+    <score-part id="P1">
+      <part-name>P1</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>P2</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <time>
+          <beats>3</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <note>
+        <rest />
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot />
+      </note>
+    </measure>
+    <measure number="2">
+      <attributes>
+        <key>
+          <fifths>0</fifths>
+          <mode>major</mode>
+        </key>
+      </attributes>
+    </measure>
+  </part>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <time>
+          <beats>3</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>F</sign>
+          <line>4</line>
+        </clef>
+      </attributes>
+      <note>
+        <rest />
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot />
+      </note>
+    </measure>
+    <measure number="2">
+      <attributes>
+        <key>
+          <fifths>0</fifths>
+          <mode>major</mode>
+        </key>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>

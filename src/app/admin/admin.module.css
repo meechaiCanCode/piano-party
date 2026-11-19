@@ -1,0 +1,182 @@
+.row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap;          /* stacks on narrow screens */
+}
+
+.row > * {
+  flex: 1 1 200px;          /* side by side, but wrap below ~200px each */
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.card {
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    border: 1px solid #2f2f2f;
+    border-radius: 12px;
+    padding: 2.0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.0rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.field input {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    color: #1b1b1b;
+    font-size: 0.95rem;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: #9292ff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2)
+}
+
+.ban {
+    padding: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff5555;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.15s ease;
+}
+
+.unban {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #aaddaa;
+  color: #1b1b1b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ban:hover {
+  background-color: #cc3333;
+  outline-offset: 2px;
+}
+
+.unban:hover {
+  background-color: #88aa88;
+  outline-offset: 2px;
+}
+.ban:focus-visible {
+  outline: 2px solid #dd4444;
+  outline-offset: 2px;
+}
+.unban:focus-visible {
+  outline: 2px solid #aaddaa;
+  outline-offset: 2px;
+}
+
+.label{
+    color: #2f2f2f;
+    font-size: 16px;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #3a3a3a;
+  width: 100%;
+  text-align: center;
+  color: #1b1b1b;
+}
+
+.error {
+  color: #ff8a80;
+  font-size: 0.85rem;
+  background-color: rgba(179, 38, 30, 0.15);
+  border: 1px solid rgba(179, 38, 30, 0.4);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.bannedList {
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid #2f2f2f;
+  border-radius: 8px;
+}
+
+.bannedTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  color: #1b1b1b;
+}
+
+.bannedTable th,
+.bannedTable td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.bannedTable thead th {
+  position: sticky;   /* header stays put while scrolling */
+  top: 0;
+  background-color: #e4e4e4;
+}
+
+.bannedTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.hint{
+  font-style: italic;
+  color:#3a3a3a;
+  font-size: 0.75rem;
+}
+
+.card .hint {
+  padding: 0px;
+}

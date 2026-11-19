@@ -9,24 +9,6 @@ CREATE TABLE Users (
     ban_expires TIMESTAMPTZ
 );
 
-CREATE TABLE Attempts (
-    id SERIAL PRIMARY KEY,
-    user_id UUID NOT NULL REFERENCES Users(id) ON DELETE CASCADE,
-    song_id INT NOT NULL REFERENCES Songs(id),
-
-    song_completed BOOLEAN NOT NULL,    -- If song was played to completion
-    time_played TIMESTAMPTZ NOT NULL,   -- Timestamp that the song ended
-
-    score INT NOT NULL,
-    notes_hit INT NOT NULL,             -- Notes played correctly
-    notes_missed INT NOT NULL,          -- Notes not hit in the correct time window
-    notes_incorrect INT NOT NULL,       -- Extraneous notes played
-    
-    -- Timing statistics based on difference between a note hit and the actual note 
-    miss_time_avg INT,                  -- in ms
-    miss_time_std_dev INT               -- standard deviation in ms
-);
-
 CREATE TABLE Sessions (
     token TEXT PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES Users(id) ON DELETE CASCADE,
@@ -49,4 +31,18 @@ CREATE TABLE Songs (
     time_denominator REAL,
 
     difficulty REAL -- For Elena
+);
+
+CREATE TABLE Attempts (
+    id SERIAL PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES Users(id) ON DELETE CASCADE,
+    song_id INT NOT NULL REFERENCES Songs(id),
+
+    song_completed BOOLEAN NOT NULL,    -- If song was played to completion
+    time_played TIMESTAMPTZ NOT NULL,   -- Timestamp that the song ended
+
+    score REAL NOT NULL,
+    notes_hit INT NOT NULL,             -- Notes played correctly
+    notes_missed INT NOT NULL,          -- Notes not hit in the correct time window
+    notes_incorrect INT NOT NULL        -- Extraneous notes played
 );

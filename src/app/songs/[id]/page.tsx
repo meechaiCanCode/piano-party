@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { pool } from "@/server/db";
 import { renderScore } from "@/server/renderScore";
+import PianoKeyboard from "./PianoKeyboard";
 
 import SongPlayer from "./SongPlayer";
 
@@ -32,6 +33,7 @@ export default async function SongPage({
                 {score
                     ? <SongPlayer key={id} {...score} />
                     : <p>Sheet music could not be loaded.</p>}
+                <PianoKeyboard />
                 <p>Composer: {song.composer || "Unknown"}</p>
                 <p>Genre: {song.style || "Unspecified"}</p>
                 <p>Tempo: {song.tempo != null ? `${song.tempo} BPM` : "Unknown"}</p>

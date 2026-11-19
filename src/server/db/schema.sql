@@ -25,7 +25,7 @@ CREATE TABLE Attempts (
     -- Timing statistics based on difference between a note hit and the actual note 
     miss_time_avg INT,                  -- in ms
     miss_time_std_dev INT               -- standard deviation in ms
-)
+);
 
 CREATE TABLE Sessions (
     token TEXT PRIMARY KEY DEFAULT gen_random_uuid(),

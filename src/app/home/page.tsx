@@ -10,18 +10,22 @@ type Song = {
 };
 
 export default async function Home({ searchParams, }: {
-    searchParams: Promise<{ page?: string }>; }) {
+    searchParams: Promise<{ search?: string, page?: string }>; }) {
 
     const params = await searchParams;
     const requestedPage = Number(params.page);
+    const searchQuery = String(params.search ?? "").trim();
     const page = requestedPage > 0 ? requestedPage : 1;
 
     const { rows: songs } = await pool.query<Song>(
         `SELECT id, title, composer, style
         FROM songs
+        WHERE title ILIKE $1
+            OR composer ILIKE $1
+            OR style ILIKE $1
         ORDER BY id
-        LIMIT 21 OFFSET $1`,
-        [(page - 1) * 20]
+        LIMIT 21 OFFSET $2`,
+        [`%${searchQuery}%`, (page - 1) * 20]
     );
 
     return (
@@ -39,11 +43,11 @@ export default async function Home({ searchParams, }: {
             </div>
 
             <nav className={styles.pages}>
-                {page > 1 && (<Link href={`/home?page=${page - 1}`}>Previous</Link>)}
+                {page > 1 && (<Link href={`/home?search=${searchQuery}&page=${page - 1}`}>Previous</Link>)}
 
                 <span>Page {page}</span>
                 
-                {songs.length > 20 && (<Link href={`/home?page=${page + 1}`}>Next</Link>)}
+                {songs.length > 20 && (<Link href={`/home?search=${searchQuery}&page=${page + 1}`}>Next</Link>)}
             </nav>
         </main>
     );

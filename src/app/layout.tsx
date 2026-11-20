@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Navbar} from "./Navbar";
+import {Navbar} from "./navbar/Navbar";
 import {Footer} from "./Footer";
 import { Cascadia_Mono, Fraunces, IBM_Plex_Sans } from "next/font/google";
+import { getCurrentUser } from "@/server/db/session";
 
 export const metadata: Metadata = {
   title: "Piano Party",
@@ -12,11 +13,13 @@ export const metadata: Metadata = {
 const display = Fraunces({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-display" });
 const body = Cascadia_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-body" });
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
-        <Navbar/>
+        <Navbar user={currentUser}/>
         {children}
         <Footer/>
       </body>

@@ -1,0 +1,109 @@
+.navbar {
+    width: 100%;
+    background-color: #6c6cff;
+    color: #f2f2f2;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1000;
+}
+
+.navbar .title {
+    font-family:  var(--font-body), serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title img {
+    height: 2rem;
+    width: auto;
+    display: block;
+}
+.navbar .search {
+    font-family:  var(--font-body), serif;
+    font-size: 1rem;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+    width: 31ch;
+    border-radius: 9999px 9999px 9999px 9999px;
+    border: none;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar .account {
+    font-family:  var(--font-body), serif;
+    font-weight: 600;
+    text-decoration: none;
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar .account:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.account img {
+    height: 1.5rem;
+    width: auto;
+    display: block;
+}
+.navbar .authButtons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dropdown {
+  position: fixed;
+  inset: auto;
+  top: 50px;
+  right: 15px;
+  margin: 0;
+  border: none;
+  padding: 0;
+  min-width: 180px;
+  flex-direction: column;
+  background: #6c6cff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dropdown:popover-open {
+  display: flex;
+}
+.dropdown a,
+.dropdown button {
+  padding: 0.6rem 1rem;
+  color: #f2f2f2;
+  text-decoration: none;
+  font: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.dropdown a:hover,
+.dropdown button:hover { background: rgba(255, 255, 255, 0.15); }
+
+#popover {
+  background: none; border: none; font: inherit; padding: 0;
+}

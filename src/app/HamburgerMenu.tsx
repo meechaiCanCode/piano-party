@@ -1,5 +1,4 @@
-import Link from "next/link";
-import styles from "./navbar.module.css";
+import styles from "./navbar/navbar.module.css";
 import { logout } from "./logout/actions";
 
 export function HamburgerMenu({ username, isAdmin }: { username: string; isAdmin: boolean }) {

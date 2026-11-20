@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Navbar} from "./Navbar";
+import {Navbar} from "./navbar/Navbar";
 import {Footer} from "./Footer";
 import { Cascadia_Mono, Fraunces, IBM_Plex_Sans } from "next/font/google";
 

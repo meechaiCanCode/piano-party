@@ -4,3 +4,6 @@ INSERT INTO Users (username, password_hash, is_admin, ban_expires) VALUES
     ('Jaefae', '$2b$12$B3xv.YuOFx8dTiDQckaOUueXBv.oGl0ekWfgIn38Oke6pXl4cMDTm', TRUE, NULL), -- Password: supersecret
     ('MrBanned', '$2b$12$B3xv.YuOFx8dTiDQckaOUueXBv.oGl0ekWfgIn38Oke6pXl4cMDTm', FALSE, '9999-12-31T00:00:00Z'), -- Password: supersecret
     ('MrSoonUnbanned', '$2b$12$B3xv.YuOFx8dTiDQckaOUueXBv.oGl0ekWfgIn38Oke6pXl4cMDTm', FALSE, '3000-12-31T00:00:00Z'); -- Password: supersecret
+
+INSERT INTO Sessions (user_id) VALUES
+    ((SELECT id FROM Users WHERE username = 'TheNoobyApple'));

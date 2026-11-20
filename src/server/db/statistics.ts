@@ -1,5 +1,5 @@
 import { DatabaseError } from "pg"
-import { pool } from "../db"
+import { pool } from "@/server/db"
 import { getCurrentUser } from "./session"
 
 export type AttemptConstructor = {
@@ -11,7 +11,7 @@ export type AttemptConstructor = {
     score : number,
     notesHit : number,
     notesMissed : number,
-    notesIncorrect : number,
+    notesIncorrect : number
 }
 
 export type Attempt = Readonly<AttemptConstructor & {
@@ -26,22 +26,34 @@ export const ATTEMPT_FIELDS = `id, user_id AS "userId", song_id AS "songId", son
  * @param newAttempt 
  * @returns The newly created attempt, or an error message explaining why the attempt was not stored.
  */
-export async function logNewAttempt(newAttempt : AttemptConstructor): Promise<Attempt | string> 
+export async function logAttempt(attempt : AttemptConstructor): Promise<Attempt | string> 
 {
     const currentUser = await getCurrentUser()
     if (!currentUser)
         return "User is not logged in";
-    if (newAttempt.score < 0)
+    if (attempt.score < 0)
         return "Score is negative";
-    if (!Number.isInteger(newAttempt.notesHit) || newAttempt.notesHit < 0)
+    if (!Number.isInteger(attempt.notesHit) || attempt.notesHit < 0)
         return "Notes hit is not a positive integer";
-    if (!Number.isInteger(newAttempt.notesMissed) || newAttempt.notesHit < 0)
+    if (!Number.isInteger(attempt.notesMissed) || attempt.notesHit < 0)
         return "Notes missed is not a positive integer";
-    if (!Number.isInteger(newAttempt.notesHit) || newAttempt.notesHit < 0)
+    if (!Number.isInteger(attempt.notesHit) || attempt.notesHit < 0)
         return "Notes incorrect is not a positive integer";
     try {
-        const result = await pool.query(`INSERT INTO Attempts (user_id, song_id, song_completed, time_played, score, notes_hit, notes_missed, notes_incorrect) RETURNING ${ATTEMPT_FIELDS}`)
-        return result.rows[0]
+        const result = await pool.query(
+            `INSERT INTO Attempts (user_id, song_id, song_completed, time_played, score, notes_hit, notes_missed, notes_incorrect) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING ${ATTEMPT_FIELDS}`,
+            [
+                currentUser.id, 
+                attempt.songId,
+                attempt.songCompleted, 
+                attempt.timePlayed, 
+                attempt.score, 
+                attempt.notesHit, 
+                attempt.notesMissed, 
+                attempt.notesIncorrect
+            ]);
+
+        return result.rows[0];
     }
     catch (e) {
         if (e instanceof DatabaseError)
@@ -55,4 +67,12 @@ export async function logNewAttempt(newAttempt : AttemptConstructor): Promise<At
         }
         throw e;
     }
+}
+
+export async function getAttemptsByUser(userId : string | null) : Promise<Attempt[]>
+{
+    if (!userId)
+        return [];
+    const result = await pool.query("SELECT * FROM Attempts WHERE user_id = $1", [userId]);
+    return result.rows;
 }

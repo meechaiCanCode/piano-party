@@ -61,9 +61,8 @@ export async function getUserBySession(
 ): Promise< User | null> {
   if (!session) 
     return null;
-
-  const result = await pool.query<User>(`${USER_QUERY} WHERE id = $1`, [session.userId]);
-  return result.rows[0] ?? null;
+  
+  return getUserByUserId(session.userId);
 }
 
 /**

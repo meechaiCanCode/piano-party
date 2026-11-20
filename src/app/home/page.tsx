@@ -14,7 +14,7 @@ export default async function Home({ searchParams, }: {
 
     const params = await searchParams;
     const requestedPage = Number(params.page);
-    const searchQuery = String(params.search ?? "")?.trim();
+    const searchQuery = String(params.search ?? "").trim();
     const page = requestedPage > 0 ? requestedPage : 1;
 
     const { rows: songs } = await pool.query<Song>(

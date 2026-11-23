@@ -104,7 +104,9 @@ Run from the project root:
 ```bash
 uv run src/scripts/difficultySorter.py
 ```
-Running it overwrites `data/difficulty_rankings.csv`, `data/difficulty.log` and `data/converted_xml/`. The `python-ly/` folder is required at the repo root since the MusicXML converter needs `python-ly/ly/xml/xml-export.ily` from it.
+Running it overwrites `data/difficulty_rankings.csv`, `data/difficulty.log`, `src/server/db/seed-difficulty.sql` and `data/converted_xml/`. The `python-ly/` folder is required at the repo root since the MusicXML converter needs `python-ly/ly/xml/xml-export.ily` from it.
+
+The db:reset command will apply the difficulty scores in the songs table. 
 
 ## Test accounts
 | Credentials | Significance |

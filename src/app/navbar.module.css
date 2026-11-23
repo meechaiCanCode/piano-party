@@ -64,6 +64,25 @@
     width: auto;
     display: block;
 }
+.navbar .userActions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar .streak {
+    font-family:  var(--font-body), serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.streak img {
+    height: 1.5rem;
+    width: auto;
+    display: block;
+}
 .navbar .authButtons {
     display: flex;
     align-items: center;

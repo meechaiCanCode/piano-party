@@ -6,7 +6,9 @@ CREATE TABLE Users (
     username TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-    ban_expires TIMESTAMPTZ
+    ban_expires TIMESTAMPTZ,
+    streak_count INT NOT NULL DEFAULT 0,
+    last_active_date DATE
 );
 
 CREATE TABLE Sessions (

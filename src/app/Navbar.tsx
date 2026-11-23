@@ -11,7 +11,13 @@ export async function Navbar(){
       <Link href={user ? "/home" : "/"} className={styles.title}><img src="/images/logo-notext-white.svg" alt="Piano Party" />Piano Party</Link>
         <input type="text" className={styles.search} placeholder="Search Title, Composer, Genre" ></input>
         {user ? (
-        <HamburgerMenu username={user.username} isAdmin={user.isAdmin}/>
+        <div className={styles.userActions}>
+          <span className={styles.streak}>
+            <img src={user.streak > 0 ? "/images/Streak.svg" : "/images/InactiveStreak.svg"} alt="Streak" />
+            {user.streak}
+          </span>
+          <HamburgerMenu username={user.username} isAdmin={user.isAdmin}/>
+        </div>
         ) : (
             <div className={styles.authButtons}>
               <Link href="/signup" className={styles.account}>

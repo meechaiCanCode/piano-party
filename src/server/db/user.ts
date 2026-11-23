@@ -7,9 +7,11 @@ export type User = Readonly<{
     id : string,
     username : string,
     isAdmin : boolean,
-    banExpires : Date | null // Null means not banned
+    banExpires : Date | null, // Null means not banned
+    streak : number,
+    lastActive : Date | null
 }>
-export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "ban_expires" AS "banExpires"`;
+export const USER_FIELDS = `id, username, "is_admin" AS "isAdmin", "ban_expires" AS "banExpires", "streak_count" AS "streak", "last_active_date" AS "lastActive"`;
 export const USER_QUERY = `SELECT ${USER_FIELDS} FROM Users`;
 
 /**
@@ -85,4 +87,28 @@ export async function createUser(username : string, password : string): Promise<
 
     throw e;
   }
+}
+
+/**
+ * Records user activity for the day
+ * Updates streak and last active
+ * Does nothing for logins on already counted days
+ * @param userId
+ * @returns The up-to-date User, or null if no user has that ID
+ */
+export async function recordActivity(userId: string): Promise<User | null> {
+  const result = await pool.query<User>(
+    `UPDATE Users
+    SET streak_count = CASE
+        WHEN last_active_date = CURRENT_DATE -1 THEN streak_count + 1
+        ELSE 1
+      END,
+      last_active_date = CURRENT_DATE
+    WHERE id = $1
+      AND last_active_date IS DISTINCT FROM CURRENT_DATE
+    RETURNING ${USER_FIELDS}
+    `,
+    [userId]
+  );
+  return result.rows[0] ?? await getUserByUserId(userId);
 }

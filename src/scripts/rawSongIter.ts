@@ -2,7 +2,7 @@
 // through all lilypond files, sending them to parser.
 
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { parseSong } from './parseSong';
 
 async function iterateSongs(from_dir: string, to_file: string) {
@@ -15,7 +15,10 @@ async function iterateSongs(from_dir: string, to_file: string) {
       const filePath = join(entry.parentPath, entry.name);
       const contents = await readFile(filePath, {encoding: 'utf8'});
 
-      const song = parseSong(contents, filePath);
+      // Stored relative to the songs folder with forward slashes so it matches
+      // difficultySorter.py output on every OS.
+      const songPath = relative(from_dir, filePath).split(sep).join('/');
+      const song = parseSong(contents, songPath);
 
       if (song !== null) {
         good_songs.push(song);

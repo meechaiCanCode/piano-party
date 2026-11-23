@@ -366,7 +366,7 @@ def process_file(path):
     difficulty = classify(score, metadata["BPM"])
     logging.info("SUCCESS | %s | %s | Method: %s", path.relative_to(FOLDER), difficulty, method)
     return {
-        "File": str(path.relative_to(FOLDER)),
+        "File": path.relative_to(FOLDER).as_posix(),
         "Title": metadata["Title"],
         "Composer": metadata["Composer"],
         "Difficulty": difficulty,

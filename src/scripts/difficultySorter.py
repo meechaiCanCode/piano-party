@@ -1,3 +1,15 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "music21>=10.5,<11",
+#     "ly-to-musicxml==0.1.1",
+# ]
+# ///
+# Run with: uv run src/scripts/difficultySorter.py
+# Also requires the LilyPond binary on PATH (not a Python package).
+# ly-to-musicxml locates python-ly/ly/xml/xml-export.ily by walking up from
+# each score, so the python-ly/ folder at the repo root is required.
+
 import csv
 import re
 import shutil

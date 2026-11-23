@@ -86,6 +86,26 @@ npm run db:reset
 ```
 This will wipe the current database and rebuild from `server/db/schema.sql`, then load test data from `server/db/seed.sql`
 
+## Difficulty rankings (offline)
+`src/scripts/difficultySorter.py` scores every song in `data/filtered_songs_ly/` and writes `data/difficulty_rankings.csv`. Python dependencies are declared inside the script and locked in `difficultySorter.py.lock`, so [uv](https://docs.astral.sh/uv/) installs them automatically.
+
+Install uv and LilyPond (LilyPond is a separate program, not a Python package):
+```bash
+# Linux (Debian/Ubuntu)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+sudo apt-get install lilypond
+# macOS
+brew install uv lilypond
+# Windows
+winget install astral-sh.uv
+# then install LilyPond from https://lilypond.org/download.html and add its bin folder to PATH
+```
+Run from the project root:
+```bash
+uv run src/scripts/difficultySorter.py
+```
+Running it overwrites `data/difficulty_rankings.csv`, `data/difficulty.log` and `data/converted_xml/`. The `python-ly/` folder is required at the repo root since the MusicXML converter needs `python-ly/ly/xml/xml-export.ily` from it.
+
 ## Test accounts
 | Credentials | Significance |
 |---|---|

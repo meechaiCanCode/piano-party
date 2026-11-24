@@ -30,10 +30,14 @@ export default async function SongPage({
         <main>
             <article>
                 <h1>{song.title}</h1>
-                {score
-                    ? <SongPlayer key={id} {...score} />
-                    : <p>Sheet music could not be loaded.</p>}
-                <PianoKeyboard />
+                {score ? (
+                    <SongPlayer key={id} {...score} />
+                ) : (
+                    <>
+                        <p>Sheet music could not be loaded.</p>
+                        <PianoKeyboard />
+                    </>
+                )}
                 <p>Composer: {song.composer || "Unknown"}</p>
                 <p>Genre: {song.style || "Unspecified"}</p>
                 <p>Tempo: {song.tempo != null ? `${song.tempo} BPM` : "Unknown"}</p>

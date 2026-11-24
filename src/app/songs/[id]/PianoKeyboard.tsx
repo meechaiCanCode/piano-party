@@ -18,13 +18,20 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 ],
 });
 
-export default function PianoKeyboard() {
+type PianoKeyboardProps = {
+    onNotePress?: (midiNumber: number) => void;
+};
+
+export default function PianoKeyboard({ onNotePress }: PianoKeyboardProps) {
     const [sample, setSample] = useState<{
         context: AudioContext;
         buffer: AudioBuffer;
     } | null>(null);
 
-    const playing = useRef(new Map<number, AudioBufferSourceNode>());
+    const playing = useRef(new Map<number, {
+        source: AudioBufferSourceNode;
+        gain: GainNode;
+    }>());
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -53,15 +60,21 @@ export default function PianoKeyboard() {
     }, []);
 
     function stopNote(midiNumber: number) {
-        const source = playing.current.get(midiNumber);
-        if (!source) return;
+        const note = playing.current.get(midiNumber);
+        if (!note) return;
 
         playing.current.delete(midiNumber);
-        source.stop();
+
+        const now = note.source.context.currentTime;
+        const end = now + 0.2;
+        note.gain.gain.setValueAtTime(1, now);
+        note.gain.gain.exponentialRampToValueAtTime(0.001, end);
+        note.source.stop(end);
     }
 
     function playNote(midiNumber: number) {
         if (!sample) return;
+        onNotePress?.(midiNumber);
 
         const { context, buffer } = sample;
         if (context.state === "suspended") {
@@ -72,13 +85,19 @@ export default function PianoKeyboard() {
         const source = context.createBufferSource();
         source.buffer = buffer;
         source.playbackRate.value = 2 ** ((midiNumber - 57) / 12); // A3 is MIDI 57
-        source.connect(context.destination);
-        playing.current.set(midiNumber, source);
+        const gain = context.createGain();
+        source.connect(gain);
+        gain.connect(context.destination);
+
+        const note = { source, gain };
+        playing.current.set(midiNumber, note);
+
         source.onended = () => {
-            if (playing.current.get(midiNumber) === source) {
+            if (playing.current.get(midiNumber) === note) {
                 playing.current.delete(midiNumber);
             }
             source.disconnect();
+            gain.disconnect();
         };
         source.start();
     }

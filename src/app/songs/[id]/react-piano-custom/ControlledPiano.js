@@ -107,6 +107,7 @@ class ControlledPiano extends React.Component {
     }
     const midiNumber = this.getMidiNumberForKey(event.key);
     if (midiNumber) {
+      event.preventDefault();
       this.onPlayNoteInput(midiNumber);
     }
   };
@@ -119,7 +120,6 @@ class ControlledPiano extends React.Component {
     // the ctrl/meta/shift check is removed to fix that issue.
     const midiNumber = this.getMidiNumberForKey(event.key);
     if (midiNumber) {
-      event.preventDefault();
       this.onStopNoteInput(midiNumber);
     }
   };

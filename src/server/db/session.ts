@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { pool } from "@/server/db";
-import { User, getUserBySession, isBanActive } from "./user";
+import { User, getUserBySession, isBanActive, recordActivity} from "./user";
 
 export type Session = Readonly<{
   token : string,
@@ -41,8 +41,8 @@ export async function getCurrentSession() : Promise<Session | null> {
  */
 export async function getCurrentUser() : Promise< User | null> {
   const user = await getUserBySession(await getCurrentSession());
-  if(user && isBanActive(user)) return null;
-  return user ?? null
+  if(!user || isBanActive(user)) return null;
+  return await recordActivity(user.id);
 }
 
 /**
